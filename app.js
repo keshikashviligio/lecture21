@@ -34,7 +34,7 @@ function initMessenger(newUserName){
       appendAllUsers(message.data);
     }
     if(message.type === 'chatMessage'){
-      appendMessage(message.data);
+      appendMessage(message.data, message.id);
     }
     console.log(message);
   });
@@ -60,8 +60,9 @@ function appendAllUsers(users) {
   });
 }
 
-function appendMessage(message) {
+function appendMessage(message, id) {
   const div = document.createElement('div');
   div.innerHTML = message;
+  div.setAttribute('data-id', id);
   messagesContainer.appendChild(div);
 }
