@@ -34,7 +34,7 @@ function initMessenger(newUserName){
       appendAllUsers(message.data);
     }
     if(message.type === 'chatMessage'){
-      appendMessage(message.data, message.id);
+      appendMessage(message.data, message.id, webSocketClient);
     }
     console.log(message);
   });
@@ -60,9 +60,11 @@ function appendAllUsers(users) {
   });
 }
 
-function appendMessage(message, id) {
+function appendMessage(message, id, webSocketClient) {
+  const messageLikes = document.createElement('span');
   const div = document.createElement('div');
   div.innerHTML = message;
   div.setAttribute('data-id', id);
+  div.appendChild(messageLikes);
   messagesContainer.appendChild(div);
 }
